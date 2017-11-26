@@ -10,15 +10,19 @@ class Catalog(MPTTModel):
         verbose_name_plural = "Категории"
         verbose_name = "Категория"
         ordering = ('tree_id',)
+
     name = models.CharField(max_length=50, unique=True, verbose_name="Категория")
     parent = TreeForeignKey('self',blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
-    #url_field = CategoryUrl.url_maker(self)
+    slug = models.SlugField(max_length=200, unique=True, db_index=True, db_column='slug')
 
     def __str__(self):
         return self.name
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('show_catalog', args=[self.slug])
 
     class MPTTMeta:
         level_attr = 'mptt_level'
@@ -30,53 +34,26 @@ class Goods(models.Model):
         db_table = 'goods' # меняет название таблицы в БД
         verbose_name_plural = "Товары"
         verbose_name = "Товар"
-        index_together = [['id', 'slug']]
 
     db_table = 'goods_id'
-    name = models.CharField(max_length=100,unique=True,)
-    price = models.FloatField(max_length=10)
-    description = models.TextField(verbose_name='Description')
-    vendor_code = models.CharField(max_length=6, unique=True)  # артикул
+    name = models.CharField(max_length=100,unique=True,verbose_name="Название")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    description = models.TextField(blank=True, verbose_name='Описание')
+    vendor_code = models.CharField(max_length=6, unique=True, verbose_name='Артикул')
     parent = models.ForeignKey(Catalog, blank=True,verbose_name='Раздел',related_name='+')
-    slug = models.CharField(max_length=200, unique=True, db_index=True)
+    slug = models.SlugField(max_length=200, unique=True, db_index=True)
 
     def __str__(self):
-        return (self.name + " - ( раздел <" + str(self.parent) + "> )")
+        return (self.name)
 
     def __unicode__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('goods_slug', args=[self.slug])
+        return reverse('GoodsList', args=[self.slug])
 
 
 mptt.register(Catalog, order_insertion_by = ['name'])
-
-
-
-
-
-
-
-
-"""
-# создание текста ссылки в транслите
-class CategoryUrl(Catalog):
-    category_url = {}
-    catalog_obj = Catalog.objects.all()
-
-    def url_maker(self):
-        if id.tree_id == 1:
-            translit_id = slugify(id)
-            CategoryUrl.category_url = {id.name:translit_id}
-"""
-
-
-
-
-
-
-
 
 
 

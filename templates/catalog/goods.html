@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Товары в каталоге</title>
+    <h1>Товары в разделе</h1>
 </head>
-<body> HI, {{goods}}
+<title> {{ goods.name }} </title>
+
+<body> Hello, {{goods.name}}.
+<br> Your vendor_code's: {{ goods.vendor_code }} ,</br>
+        Your price's: {{ goods.price }}
+      <br>  There's smth about: {{ goods.description }} </br>
+
+You're the thing from list with another goods:
 <ul>
-{% for goods in goods_list %}
-    <li> {{goods}} </li>
+{% for gds in goods_all %}
+    <li> {{gds}} </li>
 {% endfor %}
 </ul>
-
 </body>
 </html>

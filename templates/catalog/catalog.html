@@ -1,14 +1,15 @@
-{% load mptt_tags %}
-<title> Main page </title>
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h1>Каталог</h1>
+</head>
+<title> Каталог </title>
+<br>Основной Каталог:</br>
 <ul>
-    {% recursetree nodes %}
-        <li>
-            {{ node.name }}
-            {% if not node.is_leaf_node %}
-                <ul class="children">
-                    {{ children }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endrecursetree %}
+{% for node in nodes %}
+
+<li> {{ node }} </li>
+
+{% endfor %}
 </ul>

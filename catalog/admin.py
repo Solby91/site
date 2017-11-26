@@ -4,23 +4,16 @@ from .models import Catalog, Goods
 
 
 class GoodsAdmin(admin.ModelAdmin):
-    fields = ['name','price', 'parent', 'description','vendor_code', 'slug']
+    fields = ['name','price', 'parent', 'description','vendor_code', 'slug', ]
+    prepopulated_fields = {'slug': ('name', )}
     search_fields = ['name']
     list_filter = ['parent']
 
 
+class CatalogAdmin(admin.ModelAdmin):
+    fields = ['name', 'parent', 'slug', ]
+    prepopulated_fields = {'slug': ('name', )}
+    list_filter = ['parent', 'tree_id']
 
 admin.site.register(Goods, GoodsAdmin)
-
-admin.site.register(
-    Catalog,
-    DraggableMPTTAdmin,
-    list_display = (
-        'tree_actions',
-        'indented_title',
-        ),
-    list_display_links = (
-        'tree_actions',
-        ),
-    mptt_level_indent = 30
-    )
+admin.site.register(Catalog, CatalogAdmin)
