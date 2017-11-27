@@ -5,11 +5,23 @@
     <h1>Каталог</h1>
 </head>
 <title> Каталог </title>
-<br>Основной Каталог:</br>
-<ul>
-{% for node in nodes %}
 
-<li> {{ node }} </li>
+ <li {% if not catalog %} class="selected" {% endif %}>
+        <a href="{% url "category" %}">Все</a>
+      </li>
 
+{% for cat in catalog %}
+        <li {% if catalog.category_slug == cat.category_slug %} class="selected" {% endif %}>
+          <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+        </li>
 {% endfor %}
-</ul>
+
+
+
+
+{#  удалять перед запуском #}
+{% for node in nodes %}
+    {% if node.parent_id == None %}
+        <li> <a href="{% url 'category' %}">{{ node.name }}</a> </li>
+    {% endif %}
+{% endfor %}

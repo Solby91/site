@@ -5,10 +5,11 @@
     <h1>{{ catalog.name }}</h1>
 </head>
 <title> {{ catalog.name }} </title>
-<ul>
-    {% for node in nodes %}
-        <br> node </br>
-    {% endfor %}
+
+{% for x in nodes %}
+    {% if x.name in categories %}
+     <li>  {{ x.name }} </li>
+    {% endif %}
+{% endfor %}
 
 
-</ul>

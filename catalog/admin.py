@@ -11,9 +11,10 @@ class GoodsAdmin(admin.ModelAdmin):
 
 
 class CatalogAdmin(admin.ModelAdmin):
-    fields = ['name', 'parent', 'slug', ]
-    prepopulated_fields = {'slug': ('name', )}
+    fields = ['name', 'parent', 'category_slug', ]
+    prepopulated_fields = {'category_slug': ('name', )}
     list_filter = ['parent', 'tree_id']
+
 
 admin.site.register(Goods, GoodsAdmin)
 admin.site.register(Catalog, CatalogAdmin)

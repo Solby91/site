@@ -13,7 +13,7 @@ class Catalog(MPTTModel):
 
     name = models.CharField(max_length=50, unique=True, verbose_name="Категория")
     parent = TreeForeignKey('self',blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
-    slug = models.SlugField(max_length=200, unique=True, db_index=True, db_column='slug')
+    category_slug = models.SlugField(max_length=200, unique=True, db_index=True, db_column='slug')
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Catalog(MPTTModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('show_catalog', args=[self.slug])
+        return reverse('catalog:category', args=[self.category_slug])
 
     class MPTTMeta:
         level_attr = 'mptt_level'
@@ -50,7 +50,7 @@ class Goods(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('GoodsList', args=[self.slug])
+        return reverse('catalog:GoodsList', args=[self.slug])
 
 
 mptt.register(Catalog, order_insertion_by = ['name'])

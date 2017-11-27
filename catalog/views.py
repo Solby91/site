@@ -3,20 +3,25 @@ from .models import *
 
 
 def main_page(request):
-    #catalog = get_object_or_404(Catalog, slug=slug)
     nodes = Catalog.objects.all()
     return render(request, 'catalog/catalog.html',
                   {'nodes': nodes,
-                   #'catalog':catalog
                    })
 
-def show_catalog(request, slug):
-    catalog = get_object_or_404(Catalog, slug=slug)
-    nodes = Catalog.objects.get()
+
+def show_catalog(request, category_slug):
+    catalog = get_object_or_404(Catalog, category_slug=category_slug)
+    nodes = Catalog.objects.all()
+    categories = []
+    for x in nodes:
+        if x.parent_id == catalog.id:
+            categories.append(x.name)
     return render(request, "catalog/category.html",
                               {"nodes": nodes,
                                "catalog": catalog,
+                               "categories": categories,
                                })
+
 
 def GoodsList(request, slug):
     goods = get_object_or_404(Goods, slug=slug)
