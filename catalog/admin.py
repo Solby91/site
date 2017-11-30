@@ -1,19 +1,20 @@
 from django.contrib import admin
-from mptt.admin import DraggableMPTTAdmin
 from .models import Catalog, Goods
 
 
 class GoodsAdmin(admin.ModelAdmin):
-    fields = ['name','price', 'parent', 'description','vendor_code', 'slug', ]
+
     prepopulated_fields = {'slug': ('name', )}
     search_fields = ['name']
-    list_filter = ['parent']
+    list_filter = ['category']
+    list_display = ('name','price', 'available','category', 'vendor_code', 'slug', )
+    list_editable = ['price', 'available']
 
 
 class CatalogAdmin(admin.ModelAdmin):
-    fields = ['name', 'parent', 'category_slug', ]
-    prepopulated_fields = {'category_slug': ('name', )}
-    list_filter = ['parent', 'tree_id']
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name', )}
+    list_filter = ['tree_id']
 
 
 admin.site.register(Goods, GoodsAdmin)

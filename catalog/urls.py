@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.main_page, name='catalog'),
-    url(r'^(?P<category_slug>[-\w]+)/$', views.show_catalog, name='category'),
-    url(r'^(goods)/(?P<slug>[-\w]+)/$', views.GoodsList, name='GoodsList'),
+    url(r'^(?P<category_slug>[-\w]+)/$', views.GoodsList, name='GoodsByCategory'),
+    url(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$', views.GoodPage, name='PageWithGood'),
+    url(r'^$', views.GoodsList, name='CategoryList'),
 ]

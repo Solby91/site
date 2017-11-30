@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <h1>Товары в разделе</h1>
-</head>
-<title> {{ goods.name }} </title>
+{% extends "catalog/base.html" %}
 
-<body> Hello, {{goods.name}}.
-<br> Your vendor_code's: {{ goods.vendor_code }} ,</br>
-        Your price's: {{ goods.price }}
-      <br>  There's smth about: {{ goods.description }} </br>
+{% block title %}
+  {{ good.name }}
+{% endblock %}
 
-You're the thing from list with another goods:
-<ul>
-{% for gds in goods_all %}
-    <li> {{gds}} </li>
-{% endfor %}
-</ul>
-</body>
-</html>
+{% block content %}
+
+      <h1>{{ good.name }}</h1>
+      <h2><a href="{{ good.parent.get_absolute_url }}">{{ good.parent }}</a></h2>
+
+        {{ good.price }} руб.
+
+      <span>
+        {{ good.description }}
+      </span>
+
+{% endblock %}
