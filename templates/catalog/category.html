@@ -1,34 +1,30 @@
 {% extends 'catalog/base.html' %}
 
 {% block title %}
-  {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+    {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h3>Категории</h3>
-
-    <ul> {% if not category %} Метка для чего-то {% endif %}
-
-        <a href="{% url "catalog:CategoryList" %}">Все</a>
-
+    <ul> {% if not category %} >>> {% endif %}
+            <a href="{% url "catalog:CategoryList" %}">На главную</a>
+    </ul>
+    <h2>Категории</h2>
+    <ul>
         {% for cat in categories %}
-            {% if category.slug == cat.slug %} Метка для чего-то-2 {% endif %}
-
-         <li> <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
-
-        </li>
-      {% endfor %}
+            <li> {% if category.slug == cat.slug %} >>> {% endif %}
+                 <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+            </li>
+        {% endfor %}
     </ul>
 
   <div>
-    <h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
-
-      {% for good in goods %}
-         <a href="{{ good.get_absolute_url }}">
-         </a>
-          <a href="{{ good.get_absolute_url }}">{{ good.name }}</a><br>
-          {{ good.price }} руб.
-
-      {% endfor %}
+    <h2>{% if category %}{{ category.name }}{% else %}{% endif %}</h2>
+            {% if category %}
+                {% for good in goods %}
+                    <a href="{{ good.get_absolute_url }}"></a>
+                    <ul><a href="{{ good.get_absolute_url }}">{{ good.name }}</a>
+                    {{ good.price }} руб. </ul>
+                {% endfor %}
+          {% endif %}
     </div>
 {% endblock %}
