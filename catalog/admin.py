@@ -14,7 +14,6 @@ class GoodsAdmin(admin.ModelAdmin):
 class CatalogAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     prepopulated_fields = {'slug': ('name', )}
-    list_filter = ['tree_id']
 
 
 admin.site.register(Goods, GoodsAdmin)

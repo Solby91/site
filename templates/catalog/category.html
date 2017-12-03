@@ -6,14 +6,14 @@
 
 {% block content %}
     <ul> {% if not category %} >>> {% endif %}
-            <a href="{% url "catalog:CategoryList" %}">На главную</a>
+            <a href="{% url "catalog:MainCatalog" %}">На главную</a>
     </ul>
     <h2>Категории</h2>
     <ul>
         {% for cat in categories %}
-            <li> {% if category.slug == cat.slug %} >>> {% endif %}
-                 <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
-            </li>
+                <li> {% if category.slug == cat.slug %} >>> {% endif %}
+                     <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+                </li>
         {% endfor %}
     </ul>
 
@@ -23,7 +23,7 @@
                 {% for good in goods %}
                     <a href="{{ good.get_absolute_url }}"></a>
                     <ul><a href="{{ good.get_absolute_url }}">{{ good.name }}</a>
-                    {{ good.price }} руб. </ul>
+                    . Цена: {{ good.price }} руб. </ul>
                 {% endfor %}
           {% endif %}
     </div>

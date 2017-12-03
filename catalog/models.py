@@ -1,15 +1,13 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-import mptt
 from django.core.urlresolvers import reverse
 
 
-class Catalog(MPTTModel):
+class Catalog(models.Model):
     class Meta():
         db_table = 'category'
         verbose_name_plural = "Категории"
         verbose_name = "Категория"
-        ordering = ('tree_id',)
 
     name = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Категория")
     parent = TreeForeignKey('self',blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
@@ -18,13 +16,12 @@ class Catalog(MPTTModel):
     def __str__(self):
         return self.name
 
+    def cat_sl(self):
+        b = self.slug
+        return b
+
     def get_absolute_url(self):
-        return reverse('catalog:GoodsByCategory', args=[self.slug])
-
-
-    class MPTTMeta:
-        level_attr = 'mptt_level'
-        order_insertion_by = ['name']
+        return reverse('catalog:CategoryList', args=[self.slug])
 
 
 class Goods(models.Model):
@@ -45,14 +42,20 @@ class Goods(models.Model):
         ordering = ['name']
         index_together = [['id', 'slug']]
 
+    def get_absolute_url(self):
+        cur_obj = self.category_id
+        out_obj = Catalog.objects.all()
+        for x in out_obj:
+            if x.id == cur_obj:
+                category_slug = x.slug
+        return reverse('catalog:GoodPage', args=[category_slug, self.slug])
+
     def __str__(self):
         return (self.name)
 
-    def get_absolute_url(self):
-        return reverse('catalog:PageWithGood', args=[self.id, self.slug])
 
 
-mptt.register(Catalog, order_insertion_by = ['name'])
+
 
 
 
