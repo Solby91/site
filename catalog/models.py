@@ -1,5 +1,4 @@
 from django.db import models
-from mptt.models import MPTTModel, TreeForeignKey
 from django.core.urlresolvers import reverse
 
 
@@ -10,22 +9,18 @@ class Catalog(models.Model):
         verbose_name = "Категория"
 
     name = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Категория")
-    parent = TreeForeignKey('self',blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
     slug = models.SlugField(max_length=200, unique=True, db_index=True, db_column='slug')
 
     def __str__(self):
         return self.name
 
-    def cat_sl(self):
-        b = self.slug
-        return b
-
     def get_absolute_url(self):
         return reverse('catalog:CategoryList', args=[self.slug])
 
 
-class Goods(models.Model):
-    db_table = 'goods_id'
+class Products(models.Model):
+    db_table = 'products_id'
     name = models.CharField(max_length=100,unique=True,verbose_name="Название")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     description = models.TextField(blank=True, verbose_name='Описание')
@@ -36,7 +31,7 @@ class Goods(models.Model):
     image = models.ImageField(blank=True, verbose_name="Изображение товара")
 
     class Meta():
-        db_table = 'goods' # меняет название таблицы в БД
+        db_table = 'products' # меняет название таблицы в БД
         verbose_name_plural = "Товары"
         verbose_name = "Товар"
         ordering = ['name']
@@ -48,7 +43,7 @@ class Goods(models.Model):
         for x in out_obj:
             if x.id == cur_obj:
                 category_slug = x.slug
-        return reverse('catalog:GoodPage', args=[category_slug, self.slug])
+        return reverse('catalog:ProductPage', args=[category_slug, self.slug])
 
     def __str__(self):
         return (self.name)

@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Catalog, Goods
+from .models import Catalog, Products
 
 
-class GoodsAdmin(admin.ModelAdmin):
+class ProductsAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('name', )}
     search_fields = ['name']
@@ -16,5 +16,5 @@ class CatalogAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 
-admin.site.register(Goods, GoodsAdmin)
+admin.site.register(Products, ProductsAdmin)
 admin.site.register(Catalog, CatalogAdmin)

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog',
-    'mptt',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +123,8 @@ USE_TZ = True
 STATIC_ROOT = "catalog/Static"
 
 STATIC_URL = '/static/'
+
+CART_SESSION_ID = 'cart'
 
 STATICFILES_DIRS = (
     ('assets', 'app-root/repo/wsgi/openshift/static'),

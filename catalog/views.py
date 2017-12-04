@@ -1,36 +1,33 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from .models import *
+from cart.forms import CartAddProductForm
 
 
 def category_list(request, category_slug=None):
     category = None
     categories = Catalog.objects.all()
-    goods = Goods.objects.filter(available=True)
+    products = Products.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Catalog, slug=category_slug)
-        goods = goods.filter(category=category)
+        products = products.filter(category=category)
     return render(request, 'catalog/category.html', {
             'category': category,
             'categories': categories,
-            'goods': goods,
+            'products': products,
     })
 
 
-def good_page(request, category_slug=None, slug=None):
-    good = None
-    category = None
-    goods = Goods.objects.all()
-    categories = Catalog.objects.all()
-    if category_slug:
-        category = get_object_or_404(Catalog, slug=category_slug)
-        goods = goods.filter(category=category)
-    if slug:
-        good = get_object_or_404(Goods, slug=slug)
-        goods = goods.filter(category=category)
-    return render(request, 'catalog/goods.html', {
-            'good': good,
+def product_page(request, category_slug, slug):
+
+    products = Products.objects.all()
+    category = get_object_or_404(Catalog, slug=category_slug)
+    product = get_object_or_404(Products,  slug=slug)
+    products = products.filter(category=category)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'catalog/products.html', {
+            'product': product,
             'category': category,
-            'goods': goods,
-            'categories': categories,
-    })
+            'products': products,
+            'cart_product_form': cart_product_form
+          })
 

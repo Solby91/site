@@ -20,10 +20,10 @@
   <div>
     <h2>{% if category %}{{ category.name }}{% else %}{% endif %}</h2>
             {% if category %}
-                {% for good in goods %}
-                    <a href="{{ good.get_absolute_url }}"></a>
-                    <ul><a href="{{ good.get_absolute_url }}">{{ good.name }}</a>
-                    . Цена: {{ good.price }} руб. </ul>
+                {% for product in products %}
+                    <a href="{{ product.get_absolute_url }}"></a>
+                    <ul><a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    . Цена: {{ product.price }} руб. </ul>
                 {% endfor %}
           {% endif %}
     </div>
