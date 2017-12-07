@@ -4,7 +4,8 @@
 {% endblock %}
 {% block content %}
   <h1>Ваша корзина товаров</h1>
-  <thead>
+  <table class="cart">
+    <thead>
       <tr>
         <th>Изображение</th>
         <th>Продукт</th>
@@ -23,22 +24,28 @@
               </a>
             </td>
             <td>{{ product.name }}</td>
-            <td>{{ item.quantity }}</td>
+            <td><form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
+    {{ item.update_quantity_form.quantity }}
+    {{ item.update_quantity_form.update }}
+    {% csrf_token %}
+    <input type="submit" value="Обновить">
+</form></td>
             <td><a href="{% url "cart:CartRemove" product.id %}">Удалить</a></td>
-            {{ item.price }} руб
-            {{ item.total_price }} руб.
+            <td class="num">{{ item.price }} руб.</td>
+            <td class="num">{{ item.total_price }} руб.</td>
           </tr>
         {% endwith %}
       {% endfor %}
 
+           <tr class="total">
           <td>Total</td>
-
-          {{ cart.get_total_price }} руб.
-
+          <td colspan="4"></td>
+          <td class="num">{{ cart.get_total_price }} руб.</td>
+        </tr>
     </tbody>
   </table>
-
-    <a href="{% url "catalog:MainCatalog"%}" class="btn">Продолжить Шопинг</a>
-    <a href="#">Оформить заказ</a>
+    <p class="text-right">
+    <a href="{% url "catalog:MainCatalog"%}" class="btn">Вернуться к покупкам</a>
+    <a href="{% url "orders:OrderCreate" %}" class="btn">Оформить заказ</a>
   </p>
 {% endblock %}

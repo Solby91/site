@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <ul> {% if not category %} >>> {% endif %}
-            <a href="{% url "catalog:MainCatalog" %}">На главную</a>
-    </ul>
+    <div id="sidebar" class="col-sm-3">
+
     <h2>Категории</h2>
     <ul>
         {% for cat in categories %}
@@ -16,11 +15,12 @@
                 </li>
         {% endfor %}
     </ul>
-
-  <div>
+    </div>
+  <div id="main" class="product_list col-sm-9">
     <h2>{% if category %}{{ category.name }}{% else %}{% endif %}</h2>
             {% if category %}
                 {% for product in products %}
+                     <div class="item col-sm-4">
                     <a href="{{ product.get_absolute_url }}"></a>
                     <ul><a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                     . Цена: {{ product.price }} руб. </ul>
