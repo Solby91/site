@@ -1,19 +1,21 @@
 from decimal import Decimal
 from django.conf import settings
 from catalog.models import Products
+from cupons.models import Cupon
 
 
 class Cart(object):
     def __init__(self, request):
         # Инициализация корзины пользователя
         self.session = request.session
+        self.cupon_id = self.session.get('cupon_id')
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
             # Сохраняем корзину пользователя в сессию
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    # Добавление товара в корзину пользователя или обновление количества товара
+        # Добавление товара в корзину пользователя или обновление количества товара
     def add(self, product, quantity=1, update_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
@@ -49,6 +51,21 @@ class Cart(object):
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
             yield item
+
+    # Купон
+    @property
+    def cupon(self):
+        if self.cupon_id:
+            return Cupon.objects.get(id=self.cupon_id)
+        return None
+
+    def get_discount(self):
+        if self.cupon:
+            return (self.cupon.discount / Decimal('100')) * self.get_total_price()
+        return Decimal('0')
+
+    def get_total_price_after_discount(self):
+        return self.get_total_price() - self.get_discount()
 
     # Количество товаров
     def __len__(self):

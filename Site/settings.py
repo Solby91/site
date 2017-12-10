@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'catalog',
     'cart',
     'orders',
+    'cupons',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ STATICFILES_DIRS = (
     ('assets', 'app-root/repo/wsgi/openshift/static'),
 
     )
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
