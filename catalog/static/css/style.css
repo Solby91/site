@@ -1,0 +1,43 @@
+body{
+  font-size: 14px;
+  font-family: Arial;
+}
+
+.top{
+  padding: 20px 20px;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.top-bl .cart{
+  float: right;
+    font-size: 16px;
+    font-weight: 500;
+    padding-right: 20px;
+}
+
+.container{
+
+}
+
+.product-detail h2{
+  font-size: 18px;
+}
+
+.img-responsive{
+    border-radius: 50px;
+    width: 200px;
+}
+
+.col-sm-8{
+    font-style: italic;
+    padding: 10px;
+    border-left: 3px solid #bbbb;
+}
+
+.price{
+  font-weight: 600;
+  font-size: 20px;
+    color: deeppink;
+}

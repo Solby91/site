@@ -1,30 +1,35 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
   <meta charset="UTF-8">
-
+    <!-- Styles -->
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
 <title>{% block title %}{% endblock %}</title>
-
+</head>
   <body>
         <section id="header">
-        <div class="top container">
-         <td><a href="{% url "catalog:MainCatalog" %}">Мой онлайн-магазин</a></td>
-        </div>
-             {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    Ваша корзина:
-                    <a href="{% url "cart:CartDetail" %}">
-                        {{ total_items }} тов. {{ cart.get_total_price }} руб.
-                    </a>
-                 {% else %}
-                      Корзина пустая
-                {% endif %}
-            {% endwith %}
-        </div>
+            <div class="top">
+              <td><a href="{% url "catalog:MainCatalog" %}">Мой онлайн-магазин</a></td>
+            </div>
+                 {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        Ваша корзина:
+                        <a href="{% url "cart:CartDetail" %}">
+                            {{ total_items }} тов. {{ cart.get_total_price }} руб.
+                        </a>
+                    {% else %}
+                        <div class="top-bl">
+                            <div class="container">
+                                <div class="cart">Ваша корзина пуста</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                 {% endwith %}
+
         </section>
         <section id="content row" class="container">
-        {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
         </section>
   </body>
 </html>
