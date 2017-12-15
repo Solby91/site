@@ -7,22 +7,23 @@
 
 {% block content %}
     <div class="product-detail">
-        <div class="col-sm-4">
+        <div>
             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "no-image.jpg"%}{% endif %}" class="img-responsive">
-        </div>
-        <div class="col-sm-8">
-          <h1>{{ product.name }}</h1>
-          <p class="price">
-            {{ product.price }} руб.
-          </p>
-            <span>
-            {{ product.description | linebreaks}}
-          </span>
-            <form action="{% url "cart:CartAdd" product.id %}" method="post">
-                {{ cart_product_form }}
-                {% csrf_token %}
-                <input type="submit" value="Добавить в корзину">
-            </form>
+            <div class="pr-qu-ds-block">
+                <h1> {{ product.name }} </h1>
+                <p class="price">
+                    {{ product.price }} руб.
+                </p>
+                <span>
+                    {{ product.description | linebreaks}}
+                </span>
+                <form class="form-style" action="{% url "cart:CartAdd" product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Добавить в корзину">
+                </form>
+            </div>
         </div>
     </div>
+
 {% endblock %}
