@@ -3,11 +3,21 @@ body{
   font-family: Arial;
 }
 
+#header{
+    position: fixed;
+    background: #c4ff97;
+    height: 70px;
+    width: 1500px;
+    z-index: 3;
+    margin-top: -8px;
+    margin-left: -8px;
+}
+
 .top{
-  padding: 20px 20px;
-  font-size: 28px;
-  font-weight: 900;
-  text-transform: uppercase;
+    position: fixed;
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .pr-qu-ds-block{
@@ -17,15 +27,44 @@ body{
     bottom: 200px;
  }
 
-.top-bl .cart{
+.cart{
     float: right;
     font-size: 16px;
     font-weight: 500;
-    padding-right: 20px;
+    position: fixed;
+    top: 30px;
+    right: 20px;
 }
 
-.product-detail h2{
-    font-size: 18px;
+.col-sm-3{
+    width: 250px;
+    padding-top: 70px;
+}
+
+.product_list.col-sm-9{
+    width: 700px;
+    position: absolute;
+    top: 60px;
+    left: 420px;
+    border-left: solid #5b2fff 2px;
+}
+
+.product_list h2{
+    padding-left: 15px;
+}
+
+.items.row{
+    margin-top: -40px;
+    padding-left: 15px;
+    width: 1000px;
+    height: 1000px;
+}
+
+.col-sm-4{
+    padding-top: 62px;
+    width: 250px;
+    height: 250px;
+    float: left;
 }
 
 .img-responsive{
@@ -51,17 +90,10 @@ body{
     bottom: 510px;
 }
 
-.form-style input{
-    position: relative;
-    left: 5px;
-}
-
-.form-style label{
-    position: relative;
-    right: 6px;
-}
-
 .pr-qu-ds-block span{
+    display: inline-block;
+    width:500px;
+    height: 500px;
     position: relative;
     top: 20px;
 }
