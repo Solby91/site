@@ -1,20 +1,23 @@
 #header{
     position: fixed;
     background: #c4ff97;
-    height: 70px;
+    height: 40px;
     width: 1500px;
     z-index: 3;
     margin-top: -8px;
     margin-left: -8px;
-
 }
 
 .top{
     position: fixed;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 900;
     text-transform: uppercase;
-    padding-top: 17px;
+    padding-top: 5px;
+}
+
+.top-bl{
+    height: 40px;
 }
 
 .cart{
@@ -22,19 +25,39 @@
     font-size: 16px;
     font-weight: 500;
     position: fixed;
-    top: 25px;
+    top: 10px;
     right: 20px;
+}
+
+.info-line{
+    font-weight: 600;
+    height: 100px;
+    text-align: center;
+    margin-top: -68px;
+}
+
+.info-text {
+    padding-top: 50px;
+    word-spacing: 95px;
+}
+
+.logo-img{
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 200px;
+    height: 100px;
 }
 
 .col-sm-3{
     width: 250px;
-    padding-top: 50px;
+    padding-top: 8px;
 }
 
 .product-list.col-sm-9{
     width: 700px;
     position: absolute;
-    top: 60px;
+    top: 150px;
     left: 420px;
     border-left: solid  #5b2fff 2px;
 }
@@ -51,7 +74,7 @@
 }
 
 .col-sm-4{
-    padding-top: 62px;
+    padding-top: 42px;
     display: block;
     overflow: hidden;
     width: 250px;
@@ -101,4 +124,13 @@
 
 #id_quantity{
     margin-left: 5px;
+}
+
+.information-block{
+    padding-top: 50px;
+    padding-left: 420px;
+}
+
+.container{
+    padding-top: 100px;
 }

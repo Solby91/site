@@ -3,14 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <!-- Styles -->
-  <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 <title>{% block title %}{% endblock %}</title>
 </head>
   <body>
         <section id="header">
             <div class="top">
-              <td><a href="{% url "catalog:MainCatalog" %}">Мой онлайн-магазин</a></td>
+              <td><a href="{% url "MainPage" %}">Мой онлайн-магазин</a></td>
             </div>
                  {% with total_items=cart|length %}
                     {% if cart|length > 0 %}
@@ -29,6 +28,15 @@
 
         </section>
         <section id="content row" class="container">
+        <div class="info-line">
+            <img src="{% static "logo.jpg"%}" class="logo-img">
+            <div class="info-text">
+                <a href="{% url "ShowAbout" %}">О_компании</a>
+                <a href="{% url "ShowDelivery" %}">Доставка</a>
+                <a href="{% url "ShowPayment" %}">Оплата</a>
+                <a href="{% url "ShowContacts" %}">Контакты</a>
+            </div>
+        </div>
             {% block content %}{% endblock %}
         </section>
   </body>

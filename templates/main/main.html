@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+
+{% block title %} Интернет-магазин {% endblock %}
+
+{% block content %}
+<body>
+    <div class="information-block">
+        {% for contact in main %}
+        <h1 class="information-title"> {{ contact.title }}</h1>
+        <div class="information-text">
+            {{ contact.content }}
+            <p><a href="{% url "catalog:MainCatalog" %}">КЛАЦ по каталогу</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock %}

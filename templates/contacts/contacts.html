@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+
+{% block title %} Контакты {% endblock %}
+
+{% block content %}
+<body>
+    <div class="information-block">
+        {% for contact in contacts %}
+        <h1 class="information-title"> {{ contact.title }}</h1>
+        <div class="information-text">
+            {{ contact.content }}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock %}
+</html>
