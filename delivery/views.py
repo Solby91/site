@@ -3,7 +3,7 @@ from .models import Delivery
 
 
 def show_delivery(request):
-    delivery = Delivery.objects.all()
-    return render(request, 'delivery/delivery.html', {
-            'delivery': delivery,
+    info = Delivery.objects.all()
+    return render(request, 'info/info.html', {
+            'info': info,
     })

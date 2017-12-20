@@ -3,7 +3,7 @@ from .models import Contacts
 
 
 def show_contacts(request):
-    contacts = Contacts.objects.all()
-    return render(request, 'contacts/contacts.html', {
-            'contacts': contacts,
+    info = Contacts.objects.all()
+    return render(request, 'info/info.html', {
+            'info': info,
     })

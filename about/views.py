@@ -3,7 +3,7 @@ from .models import About
 
 
 def show_about(request):
-    abouts = About.objects.all()
-    return render(request, 'about/about.html', {
-            'abouts': abouts,
+    info = About.objects.all()
+    return render(request, 'info/info.html', {
+            'info': info,
     })

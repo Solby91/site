@@ -47,6 +47,7 @@
     overflow: hidden;
     width: 200px;
     height: 100px;
+    border-radius: 25px;
 }
 
 .col-sm-3{
@@ -133,4 +134,8 @@
 
 .container{
     padding-top: 100px;
+}
+
+.selected{
+    font-weight: bold;
 }

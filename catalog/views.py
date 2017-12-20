@@ -17,6 +17,7 @@ def category_list(request, category_slug=None):
     })
 
 
+
 def product_page(request, category_slug, slug):
 
     products = Products.objects.all()
