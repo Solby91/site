@@ -11,7 +11,8 @@
             <div class="top">
               <td><a href="{% url "MainPage" %}">Мой онлайн-магазин</a></td>
             </div>
-                 {% with total_items=cart|length %}
+            <div class="e-cart">
+                {% with total_items=cart|length %}
                     {% if cart|length > 0 %}
                         Ваша корзина:
                         <a href="{% url "cart:CartDetail" %}">
@@ -19,13 +20,12 @@
                         </a>
                     {% else %}
                         <div class="top-bl">
-                            <div class="container">
-                                <div class="cart">Ваша корзина пуста</div>
+                            Ваша корзина пуста
                             </div>
                         </div>
                     {% endif %}
                  {% endwith %}
-
+            </div>
         </section>
         <section id="content row" class="container">
         <div class="info-line">

@@ -11,6 +11,7 @@ class Catalog(models.Model):
     name = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Категория")
     parent = models.ForeignKey('self', blank=True, null=True, related_name='children',db_index=True, verbose_name = u'Родительский класс')
     slug = models.SlugField(max_length=200, unique=True, db_index=True, db_column='slug')
+    image = models.ImageField(blank=True, verbose_name="Изображение категории")
 
     def __str__(self):
         return self.name

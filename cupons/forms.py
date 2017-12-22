@@ -2,4 +2,8 @@ from django import forms
 
 
 class CuponApllyForm(forms.Form):
-    code = forms.CharField()
+    code = forms.CharField(label='Введите код')
+
+
+
+
