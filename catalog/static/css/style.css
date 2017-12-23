@@ -178,3 +178,7 @@ thead{
     padding-left: 20px;
     padding-top: 3px;
 }
+
+.selected{
+    font-weight: bold;
+}

@@ -17,9 +17,7 @@ def category_list(request, category_slug=None):
     })
 
 
-
 def product_page(request, category_slug, slug):
-
     products = Products.objects.all()
     category = get_object_or_404(Catalog, slug=category_slug)
     product = get_object_or_404(Products,  slug=slug)

@@ -2,12 +2,11 @@
 {% load static %}
 
 {% block title %}
-    {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+    {% if category %} {{ category.name }} {% else %} Каталог {% endif %}
 {% endblock %}
 
 {% block content %}
     <div id="sidebar" class="col-sm-3">
-
         <h2>Категории</h2>
         <ul>
             {% for cat in categories %}
@@ -18,18 +17,24 @@
         </ul>
     </div>
   <div id="main" class="product-list col-sm-9">
-    <h2>{% if category %}{{ category.name }}{% else %}{% endif %}</h2>
+    <h2>{% if category %}{{ category.name }}{% else %} Каталог товаров {% endif %}</h2>
         <div class="items row">
             {% if category %}
                 {% for product in products %}
                   <div class="item col-sm-4">
-                    <a href="{{ product.get_absolute_url }}"></a>
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "no-image.jpg"%}{% endif %}" class="img-responsive">
                     <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                     <div class="category-price"> Цена: {{ product.price }} руб. </div>
                   </div>
                 {% endfor %}
-          {% endif %}
+                {% else %}
+                {% for cat in categories %}
+                <div class="item col-sm-4">
+                    <img src="{% if cat.image %}{{ cat.image.url }}{% else %}{% static "no-image.jpg"%}{% endif %}" class="img-responsive">
+                    <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %} </code>
