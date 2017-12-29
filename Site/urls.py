@@ -7,6 +7,7 @@ from contacts.views import show_contacts
 from delivery.views import show_delivery
 from payment.views import show_payment
 from main.views import show_main
+from django.core.urlresolvers import reverse
 
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     url(r'^about/', show_about, name='ShowAbout'),
     url(r'^admin/', admin.site.urls),
     url(r'^$', show_main, name='MainPage'),
+    url(r'^search/', include('haystack.urls', namespace='show_search')),
 ]
 
 if settings.DEBUG:

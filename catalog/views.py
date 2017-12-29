@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from .models import *
 from cart.forms import CartAddProductForm
+from django.views.generic import TemplateView
 
 
 def category_list(request, category_slug=None):
@@ -30,3 +31,11 @@ def product_page(request, category_slug, slug):
             'cart_product_form': cart_product_form
           })
 
+
+def search_view (request):
+    products = Products.objects.all()
+    product = get_object_or_404(Products)
+    return render(request, 'catalog/base.html', {
+        'product': product,
+        'products': products,
+    })

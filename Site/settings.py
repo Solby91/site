@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'delivery',
     'payment',
     'main',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -149,4 +150,9 @@ CART_SESSION_ID = 'cart'
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}

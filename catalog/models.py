@@ -19,6 +19,9 @@ class Catalog(models.Model):
     def get_absolute_url(self):
         return reverse('catalog:CategoryList', args=[self.slug])
 
+    def get_absolute_url_base(self):
+        return reverse('main:CategoryListBase', args=[self.slug])
+
 
 class Products(models.Model):
     db_table = 'products_id'
@@ -30,6 +33,7 @@ class Products(models.Model):
     slug = models.SlugField(max_length=200, unique=True, db_index=True)
     available = models.BooleanField(default=False, verbose_name="В наличии")
     image = models.ImageField(blank=True, verbose_name="Изображение товара")
+
 
     class Meta():
         db_table = 'products' # меняет название таблицы в БД
