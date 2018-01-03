@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +37,40 @@
                 <a href="{% url "ShowPayment" %}">Оплата</a>
                 <a href="{% url "ShowContacts" %}">Контакты</a>
                 <a href="{% url "show_search:haystack_search" %}">Поиск</a>
-
             </div>
+        </div>
+
+        <div class="breadcrumbs">
+        <! крошки для главной >
+            {% if main %}
+            {% else %} <a href="{% url "MainPage" %}">Главная</a>
+            {% endif %}
+
+        <! крошки для инфо-разделов >
+            {% if app_url %}
+                {% for inf in info %}
+                    <a href="{{ inf.app_url }}">/{{ inf.title }}</a>
+                {% endfor %}
+                {% elif main %}
+                {% elif form %}
+                <a href="{% url "show_search:haystack_search" %}">/Поиск</a>
+                <! крошки для каталога >
+                {% else %}<a href="{% url "catalog:MainCatalog" %}">/Каталог/</a>
+            {% endif %}
+
+        <! крошки для категорий >
+            {% for cat in categories %}
+                {% if category.slug == cat.slug %}
+                     <a href="{{ cat.get_absolute_url }}">{{ cat.name }}/</a>
+                {% endif %}
+            {% endfor %}
+
+        <! крошки для товара >
+            {% for prod in products %}
+                {% if prod.slug == product.slug %}
+                    <a href="{{ prod.get_absolute_url }}">{{ prod.name }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
 
             {% block content %}{% endblock %}

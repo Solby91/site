@@ -7,7 +7,6 @@ from contacts.views import show_contacts
 from delivery.views import show_delivery
 from payment.views import show_payment
 from main.views import show_main
-from django.core.urlresolvers import reverse
 
 
 urlpatterns = [

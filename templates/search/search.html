@@ -24,7 +24,8 @@
                     <div class="search-form">
                         <img src="{% if result.object.image %}{{ result.object.image.url }}{% else %}{% static "no-image.jpg"%}{% endif %}"class="img-responsive">
                         <ul><a href="{{ result.object.get_absolute_url }}"> {{ result.object.name }} </a>
-                        <p>{{ result.object.price }} руб.</p></section>
+                        <p style="font-weight: bold">{{ result.object.price }} руб.</p>
+                        <p style="font-size: small; color: #a2a8a4;"> артикул: {{ result.object.vendor_code }}</p>
                     </div>
                 </p>
             {% empty %}

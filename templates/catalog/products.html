@@ -10,7 +10,8 @@
          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "no-image.jpg"%}{% endif %}" class="img-responsive">
          <h1 class="superh1"> {{ product.name }} </h1>
          <div class="price-cart">
-             <p class="price"> {{ product.price }} руб. </p>
+             <p style="font-weight: bold"> Цена: {{ product.price }} руб. </p>
+             <p> Артикул: {{ product.vendor_code }} </p>
              {% if product.available %}
                 <p class="stock-status"> Товар в наличии </p>
              {% else %}

@@ -14,6 +14,7 @@
     font-weight: 900;
     text-transform: uppercase;
     padding-top: 5px;
+    padding-left: 10px;
 }
 
 .top a{
@@ -64,6 +65,11 @@
 
 .info-text a:hover{
     color: #a60080;
+}
+
+.breadcrumbs{
+    padding-left: 430px;
+    z-index: 2;
 }
 
 .logo-img{
@@ -129,7 +135,7 @@
 }
 
 .product-detail{
-    padding-top: 141px;
+    padding-top: 81px;
     padding-left: 429px;
 }
 
@@ -157,8 +163,8 @@
 }
 
 .information-block{
-    padding-top: 50px;
-    padding-left: 355px;
+    margin-top: -10px;
+    padding-left: 430px;
 }
 
 .container{
@@ -173,6 +179,7 @@
     padding-top: 10px;
     border: 3px solid grey;
     width: 110%;
+    height:auto;
     border-collapse: collapse;
 }
 
@@ -225,7 +232,7 @@ thead{
     display: block;
     overflow: hidden;
     width: 220px;
-    height: 250px;
+    height: 280px;
     float: left;
     line-height: 7px;
 }

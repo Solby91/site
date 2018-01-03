@@ -5,6 +5,7 @@ from cupons.models import Cupon
 
 
 class Cart(object):
+
     def __init__(self, request):
         # Инициализация корзины пользователя
         self.session = request.session

@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404
 from .models import *
 from cart.forms import CartAddProductForm
-from django.views.generic import TemplateView
 
 
 def category_list(request, category_slug=None):
@@ -15,12 +14,14 @@ def category_list(request, category_slug=None):
             'category': category,
             'categories': categories,
             'products': products,
+            'category_slug': category_slug,
     })
 
 
 def product_page(request, category_slug, slug):
     products = Products.objects.all()
     category = get_object_or_404(Catalog, slug=category_slug)
+    categories = Catalog.objects.all()
     product = get_object_or_404(Products,  slug=slug)
     products = products.filter(category=category)
     cart_product_form = CartAddProductForm()
@@ -28,7 +29,8 @@ def product_page(request, category_slug, slug):
             'product': product,
             'category': category,
             'products': products,
-            'cart_product_form': cart_product_form
+            'cart_product_form': cart_product_form,
+            'categories': categories,
           })
 
 
